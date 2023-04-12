@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import requests
 
-TOKEN = 'MTA5NTUxNTI4NDYzNjQ1MDg5Nw.GAbAi9.Cv99MpiJuf53UvPke42zEoCZjqYP0j4TBBvHGo'
+TOKEN = 'YOUR_TOKEN_HERE'
 
 nickName = "Nickname"
 image_url = "https://cdn.wallpapersafari.com/61/15/RQbVOd.jpg"
