@@ -3,5 +3,5 @@ A Discord bot written in discord.py designed to disable and or cripple a server.
 
 ## Prerequisites:
   - Install py-cord by running the following commands in your virtual environment:
-  ```pip install py-cord``` and ```pip install requests```
+  ```pip install py-cord``` , ```pip install requests``` , and ```pip install colorist```
   - That's it!
