@@ -5,3 +5,10 @@ A Discord bot written in discord.py designed to disable and or cripple a server.
   - Install the necessary libaries by running the following commands in your virtual environment:
   ```pip install py-cord``` , ```pip install requests``` , and ```pip install colorist```
   - That's it!
+
+## Commands (Run these in your terminal):
+  removeall - removes all channels and replaces them
+  spam - sends a message with everyone appended 
+  nick - nicks all users with an input 
+  icon - replaces the icon and name of the server 
+  role - removes all available roles
