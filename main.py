@@ -35,7 +35,7 @@ async def setup(ctx):
 
     
     if (command == "spam"):
-      message = input(  "Message: ")
+      message = input("  Message: ")
       spamAmountString = input("  Messages per Channel: ")
       spamAmount = int(spamAmountString)
       for lp in range(spamAmount):
