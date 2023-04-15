@@ -7,8 +7,8 @@ A Discord bot written in discord.py designed to disable and or cripple a server.
   - That's it!
 
 ## Commands (Run these in your terminal):
-  removeall - removes all channels and replaces them
-  spam - sends a message with everyone appended 
-  nick - nicks all users with an input 
-  icon - replaces the icon and name of the server 
-  role - removes all available roles
+  - removeall - removes all channels and replaces them
+  - spam - sends a message with everyone appended 
+  - nick - nicks all users with an input 
+  - icon - replaces the icon and name of the server 
+  - role - removes all available roles
