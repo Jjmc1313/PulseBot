@@ -22,12 +22,9 @@ async def setup(ctx):
     
     
     if (command == "removeall"):
-      channelName = input("  Channel Name: ")
+      channelName = input("  Channel Name (\" \" = remove): ")
       for channel in ctx.guild.channels:
-        try:
-          await channel.delete()
-        except:
-          print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Failed Delete")
+        await channel.delete()
 
       for lp in range(100):
         try:
@@ -51,13 +48,19 @@ async def setup(ctx):
     if (command == "icon"):
       icon = input("  Icon Link: ") # https://townsquare.media/site/40/files/2017/03/Dog-.jpg?w=1200&h=0&zc=1&s=0&a=t&q=89
       name = input("  New Name: ")
-      response = requests.get(icon)
-      image_data = response.content
+      try:
+        response = requests.get(icon)
+        image_data = response.content
+      except:
+        print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Failed Link")
       try:
         await ctx.guild.edit(icon=image_data)
+      except:
+        print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Failed Icon")
+      try:
         await ctx.guild.edit(name=name)
       except:
-        print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Failed Edit")
+        print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Failed Name")
 
     if (command == "nick"):
       nickName = input(" New Nickname: ")
