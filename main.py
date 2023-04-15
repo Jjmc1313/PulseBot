@@ -4,7 +4,7 @@ import requests
 from colorist import Color
 from colorist import Effect
 
-TOKEN = 'MTA5NTUxNTI4NDYzNjQ1MDg5Nw.GcKfi4.ALZkieP2FevkJZtsT1NH3okyOWiNFK25NR8hsw'
+TOKEN = 'YOUR_TOKEN_HERE'
 
 intents = discord.Intents.all()
 bot = commands.Bot(intents=intents)
