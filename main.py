@@ -24,7 +24,10 @@ async def setup(ctx):
     if (command == "removeall"):
       channelName = input("  Channel Name: ")
       for channel in ctx.guild.channels:
-        await channel.delete()
+        try:
+          await channel.delete()
+        except:
+          print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Failed Delete")
 
       for lp in range(100):
         try:
