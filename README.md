@@ -7,7 +7,7 @@ A Discord bot written in discord.py designed to disable and or cripple a server.
 ## Installation
   - Create a virtual environment ```python -m venv pulse```
   - Clone the repo ```git clone https://github.com/Jjmc1313/PulseBot```
-  - Move main.bat to \pulse\
+  - Move main.bat & requirements.txt to \pulse\
   - Move main.py to \pulse\Scripts
   - Run ```pip install -r requirements.txt```
   - Run main.bat
