@@ -11,7 +11,7 @@ bot = commands.Bot(intents=intents)
 
 @bot.event
 async def on_ready():
-  print(f'Logged in as {bot.user}')
+  print(f'{Color.RED}{Effect.BOLD}Logged in as {Color.CYAN}{bot.user}')
 
 
 @bot.slash_command(name="setup", description='Prepares the bot with the default user experience')
