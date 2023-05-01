@@ -19,5 +19,6 @@ A Discord bot written in discord.py designed to disable and or cripple a server.
   - nick - nicks all users with an input 
   - icon - replaces the icon and name of the server 
   - role - removes all available roles
+  - kick - kicks all users from the server
 
-![image](https://user-images.githubusercontent.com/87952311/233198378-8b4e46bd-32ab-499d-b522-f61b17b68e8c.png)
+![image](https://user-images.githubusercontent.com/87952311/235386594-6d63174d-6d65-4944-ac3e-d8f75b03b2a6.png)
