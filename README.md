@@ -12,13 +12,4 @@ A Discord bot written in discord.py designed to disable and or cripple a server.
   - Move main.py to \pulse\Scripts
   - Run ```pip install -r requirements.txt```
   - Run main.bat
-
-## Commands (Run these in your terminal):
-  - removeall - removes all channels and replaces them
-  - spam - sends a message with everyone appended 
-  - nick - nicks all users with an input 
-  - icon - replaces the icon and name of the server 
-  - role - removes all available roles
-  - kick - kicks all users from the server
-
-![image](https://user-images.githubusercontent.com/87952311/235386594-6d63174d-6d65-4944-ac3e-d8f75b03b2a6.png)
+  - 
